@@ -1,0 +1,1164 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Noun Builder</title>
+<meta name="color-scheme" content="dark light">
+<meta name="theme-color" content="#141311" media="(prefers-color-scheme: dark)">
+<meta name="theme-color" content="#f7f2e8" media="(prefers-color-scheme: light)">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='8' fill='%23e3b45f'/%3E%3Ctext x='16' y='24' font-size='22' text-anchor='middle' fill='%231a1408' font-family='serif'%3E%D7%90%3C/text%3E%3C/svg%3E">
+<style>
+  /* Latin fonts self-hosted from the hub (cmainechan.github.io/heb), so
+     this tool's chrome matches the rest of the site. The Hebrew consonant
+     font stays Times New Roman -- a deliberate legibility choice for this
+     app -- left as-is throughout. */
+  @font-face{font-family:"Fraunces";font-style:normal;font-weight:400 700;font-display:swap;src:url("https://cmainechan.github.io/heb/fonts/fraunces-latin-wght-normal.woff2") format("woff2");unicode-range:U+0000-00FF,U+0131,U+0152-0153,U+02BB-02BC,U+02C6,U+02DA,U+02DC,U+0304,U+0308,U+0329,U+2000-206F,U+20AC,U+2122,U+2191,U+2193,U+2212,U+2215,U+FEFF,U+FFFD}
+  @font-face{font-family:"Figtree";font-style:normal;font-weight:300 900;font-display:swap;src:url("https://cmainechan.github.io/heb/fonts/figtree-latin-wght-normal.woff2") format("woff2");unicode-range:U+0000-00FF,U+0131,U+0152-0153,U+02BB-02BC,U+02C6,U+02DA,U+02DC,U+0304,U+0308,U+0329,U+2000-206F,U+20AC,U+2122,U+2191,U+2193,U+2212,U+2215,U+FEFF,U+FFFD}
+
+  :root {
+    color-scheme: dark light;
+    --bg: #141311;
+    --card: #1e1c19;
+    --line: #34312b;
+    --tx: #efe9dc;
+    --mu: #a09a8c;
+    --ac: #e3b45f;
+    --on: #1a1408;
+    --good: #5fb37f;
+    --good-bg: rgba(47, 122, 79, 0.22);
+    --bad: #e2726a;
+    --bad-bg: rgba(179, 38, 30, 0.2);
+    --info: #85a9cf;
+    --info-bg: rgba(133, 169, 207, 0.18);
+    --serif: "Fraunces", Georgia, "Times New Roman", serif;
+    --sans: "Figtree", system-ui, -apple-system, "Segoe UI", Roboto, sans-serif;
+  }
+  @media (prefers-color-scheme: light) {
+    :root {
+      --bg: #f7f2e8;
+      --card: #fffdf8;
+      --line: #ddd4c2;
+      --tx: #24211b;
+      --mu: #6f6858;
+      --ac: #86590a;
+      --on: #fffdf8;
+      --good: #2f7a4f;
+      --good-bg: #e6f4ea;
+      --bad: #b3261e;
+      --bad-bg: #fbe9e7;
+      --info: #1e3a5f;
+      --info-bg: #eaf0f6;
+    }
+  }
+
+  * { box-sizing: border-box; }
+
+  body {
+    font-family: var(--sans);
+    background: var(--bg);
+    color: var(--tx);
+    margin: 0;
+    padding: 2rem 1rem;
+  }
+
+  /* ---------- Site brand (links back to the hub) ---------- */
+  .site-brand {
+    max-width: 880px;
+    margin: 0 auto 1.2rem;
+    text-align: left;
+  }
+  .brand-link {
+    display: inline-flex;
+    align-items: center;
+    gap: 10px;
+    text-decoration: none;
+  }
+  .brand-link .mark {
+    display: grid;
+    place-items: center;
+    width: 28px;
+    height: 28px;
+    border-radius: 8px;
+    background: var(--ac);
+    color: var(--on);
+    font-family: "Times New Roman", Times, serif;
+    font-size: 17px;
+    line-height: 1;
+  }
+  .brand-link .name {
+    font-size: 0.9rem;
+    font-weight: 500;
+    letter-spacing: 0.01em;
+    color: var(--mu);
+    transition: color 0.2s ease;
+  }
+  .brand-link:hover .name { color: var(--ac); }
+  .brand-link:focus-visible { outline: 2px solid var(--ac); outline-offset: 3px; border-radius: 6px; }
+
+  .shell {
+    max-width: 880px;
+    margin: 0 auto;
+    background: var(--card);
+    border: 1px solid var(--line);
+    border-radius: 18px;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.18);
+    padding: 2rem 2rem 2.5rem;
+  }
+
+  header { text-align: center; margin-bottom: 0.5rem; }
+  h1 {
+    font-family: var(--serif);
+    font-weight: 500;
+    font-size: 1.7rem;
+    margin: 0 0 0.3rem;
+    letter-spacing: -0.01em;
+  }
+  header .subtitle {
+    color: var(--mu);
+    font-size: 0.95rem;
+    margin: 0;
+  }
+  header .rule {
+    width: 60px;
+    height: 3px;
+    background: var(--ac);
+    border-radius: 2px;
+    margin: 0.9rem auto 1.6rem;
+  }
+
+  .progress-row {
+    position: relative;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    font-size: 0.85rem;
+    color: var(--mu);
+    margin-bottom: 0.4rem;
+  }
+  .progress-row-right {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+  }
+  .streak-badge {
+    display: none;
+    font-weight: 600;
+    color: var(--mu);
+    transition: color 0.2s ease, transform 0.2s ease;
+  }
+  .streak-badge.boosted { color: var(--ac); }
+  .streak-badge.bump { transform: scale(1.3); }
+  /* Toast shown once, the moment the streak crosses a new tier. */
+  .streak-pop {
+    position: absolute;
+    left: 50%;
+    top: 100%;
+    margin-top: 0.4rem;
+    transform: translateX(-50%);
+    background: var(--ac);
+    color: var(--on);
+    font-weight: 700;
+    font-size: 0.8rem;
+    padding: 0.25rem 0.7rem;
+    border-radius: 999px;
+    pointer-events: none;
+    white-space: nowrap;
+    z-index: 5;
+    animation: copypop 1.6s ease-out forwards;
+  }
+  .progress-track {
+    width: 100%;
+    height: 6px;
+    background: var(--line);
+    border-radius: 4px;
+    overflow: hidden;
+    margin-bottom: 1.8rem;
+  }
+  .progress-fill {
+    height: 100%;
+    background: var(--ac);
+    border-radius: 4px;
+    transition: width 0.3s ease;
+  }
+
+  .layout { display: flex; gap: 2rem; flex-wrap: wrap; align-items: flex-start; }
+  .flashcard, .assembly { flex: 1 1 320px; }
+
+  .flashcard-card {
+    background: var(--card);
+    border: 1px solid var(--line);
+    border-radius: 14px;
+    padding: 1rem;
+    box-shadow: 0 4px 14px rgba(0, 0, 0, 0.12);
+  }
+  .image-wrap {
+    position: relative;
+    aspect-ratio: 1 / 1;
+    border-radius: 10px;
+    overflow: hidden;
+    background: var(--line);
+  }
+  .emoji-wrap {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: var(--line);
+  }
+  /* Three columns of the same emoji, drifting downward in a loop. The middle
+     column sits half a cell lower so the rows are staggered. Each track holds
+     two identical halves and slides exactly one half, so the loop is seamless. */
+  .emoji-field {
+    --cell: clamp(4.4rem, 19vw, 5.8rem);
+    position: absolute;
+    inset: 0;
+    display: flex;
+    overflow: hidden;
+    user-select: none;
+    -webkit-mask-image: linear-gradient(180deg, transparent 0, #000 12%, #000 88%, transparent 100%);
+    mask-image: linear-gradient(180deg, transparent 0, #000 12%, #000 88%, transparent 100%);
+  }
+  .emoji-col { flex: 1; height: 100%; overflow: hidden; }
+  .emoji-col:nth-child(2) .emoji-track { margin-top: calc(var(--cell) * -0.5); }
+  .emoji-track {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    animation: emoji-fall 16s linear infinite;
+    will-change: transform;
+  }
+  .emoji-track span {
+    display: block;
+    height: var(--cell);
+    line-height: var(--cell);
+    font-size: calc(var(--cell) * 0.72);
+    font-family: "Apple Color Emoji", "Segoe UI Emoji", "Noto Color Emoji", "Twemoji Mozilla", sans-serif;
+  }
+  @keyframes emoji-fall {
+    from { transform: translateY(-50%); }
+    to   { transform: translateY(0); }
+  }
+  @media (prefers-reduced-motion: reduce) {
+    .emoji-track { animation: none; }
+  }
+  /* Optional one-or-two-word cue for emojis that could mean several words. */
+  .emoji-hint {
+    position: absolute;
+    top: 0.7rem;
+    left: 50%;
+    transform: translateX(-50%);
+    padding: 0.2rem 0.75rem;
+    border-radius: 999px;
+    background: var(--card);
+    color: var(--mu);
+    font-size: 0.85rem;
+    font-weight: 600;
+    white-space: nowrap;
+    z-index: 2;
+  }
+  .emoji-hint:empty { display: none; }
+
+  .card-banner {
+    position: absolute;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    padding: 1.1rem 1rem 0.9rem;
+    background: linear-gradient(180deg, rgba(20, 30, 26, 0) 0%, rgba(18, 28, 24, 0.6) 35%, rgba(14, 22, 19, 0.93) 100%);
+    color: #f6f1e0;
+    opacity: 0;
+    transform: translateY(6px);
+    pointer-events: none;
+    transition: opacity 0.35s ease, transform 0.35s ease;
+    z-index: 2;
+  }
+  .card-banner.show { opacity: 1; transform: translateY(0); pointer-events: auto; }
+  .banner-word {
+    font-family: "Times New Roman", Times, serif;
+    direction: rtl;
+    font-size: 2rem;
+    line-height: 1.15;
+    margin-bottom: 0.25rem;
+  }
+  .banner-caption { font-size: 0.9rem; color: #e6dcc0; }
+  .banner-gloss { font-style: italic; }
+  .banner-translit { opacity: 0.8; margin-left: 0.45rem; }
+
+  .nav-btn {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    width: 2.3rem;
+    height: 2.3rem;
+    border: none;
+    border-radius: 50%;
+    background: rgba(30, 24, 18, 0.3);
+    color: #fbf7ec;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    opacity: 0.55;
+    z-index: 3;
+    transition: opacity 0.2s ease, background 0.2s ease, transform 0.2s ease;
+  }
+  .nav-btn svg { width: 1.1rem; height: 1.1rem; }
+  .nav-btn:hover:not(:disabled) {
+    opacity: 1;
+    background: rgba(30, 24, 18, 0.55);
+  }
+  .nav-btn:active:not(:disabled) { transform: translateY(-50%) scale(0.92); }
+  .nav-btn:disabled { opacity: 0.15; cursor: default; }
+  .nav-prev { left: 0.6rem; }
+  .nav-next { right: 0.6rem; }
+
+  .assembled {
+    direction: rtl;
+    unicode-bidi: bidi-override;
+    font-family: "Times New Roman", Times, serif;
+    font-size: 3rem;
+    letter-spacing: 0.3rem;
+    text-align: center;
+    border: 2px solid var(--line);
+    background: var(--card);
+    border-radius: 14px;
+    padding: 1rem;
+    margin-bottom: 1.2rem;
+    min-height: 4.5rem;
+    transition: border-color 0.25s ease, background 0.25s ease;
+  }
+  .assembled.is-correct {
+    border-color: var(--good);
+    background: var(--good-bg);
+  }
+  .assembled.is-revealed {
+    border-color: var(--info);
+    background: var(--info-bg);
+  }
+  .assembled.is-wrong {
+    border-color: var(--bad);
+    background: var(--bad-bg);
+    animation: shake 0.4s ease;
+  }
+  .assembled.long { font-size: 2.4rem; letter-spacing: 0.15rem; }
+  /* Letters that don't match the answer at their position. */
+  .assembled .slot-wrong { color: var(--bad); }
+  @keyframes shake {
+    0%, 100% { transform: translateX(0); }
+    20% { transform: translateX(-6px); }
+    40% { transform: translateX(6px); }
+    60% { transform: translateX(-4px); }
+    80% { transform: translateX(4px); }
+  }
+
+  .bank {
+    display: flex;
+    flex-wrap: wrap;
+    direction: rtl;
+    gap: 0.5rem;
+    justify-content: center;
+    margin-bottom: 1.2rem;
+    padding: 0.9rem;
+    background: var(--card);
+    border: 1px solid var(--line);
+    border-radius: 14px;
+  }
+  .bank button {
+    font-family: "Times New Roman", Times, serif;
+    font-size: 1.6rem;
+    width: 2.6rem;
+    height: 2.6rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border: 1px solid var(--line);
+    border-radius: 8px;
+    background: var(--card);
+    color: var(--tx);
+    cursor: pointer;
+    box-shadow: 0 2px 0 var(--line);
+    transition: transform 0.08s ease, box-shadow 0.08s ease, background 0.15s ease, border-color 0.15s ease;
+  }
+  .bank button:hover:not(:disabled) {
+    border-color: var(--ac);
+    background: var(--bg);
+  }
+  .bank button:active:not(:disabled) {
+    transform: translateY(2px);
+    box-shadow: 0 0 0 var(--line);
+  }
+  .bank button:disabled {
+    opacity: 0.35;
+    cursor: default;
+    box-shadow: none;
+  }
+
+  .controls {
+    display: flex;
+    gap: 0.6rem;
+    margin-bottom: 1.1rem;
+  }
+  .control-btn {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 0.3rem;
+    padding: 0.7rem 0.4rem 0.6rem;
+    border: 1px solid var(--line);
+    border-radius: 12px;
+    background: var(--card);
+    color: var(--mu);
+    font-size: 0.72rem;
+    font-weight: 600;
+    letter-spacing: 0.01em;
+    cursor: pointer;
+    box-shadow: 0 1px 0 rgba(0, 0, 0, 0.06);
+    transition: transform 0.15s ease, box-shadow 0.15s ease,
+                border-color 0.15s ease, background 0.15s ease, color 0.15s ease;
+  }
+  .control-btn svg {
+    width: 1.35rem;
+    height: 1.35rem;
+    stroke: currentColor;
+  }
+  .control-btn:hover:not(:disabled) {
+    transform: translateY(-2px);
+    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.16);
+  }
+  .control-btn:active:not(:disabled) {
+    transform: translateY(0);
+    box-shadow: 0 1px 0 rgba(0, 0, 0, 0.06);
+  }
+  .control-btn:disabled {
+    opacity: 0.4;
+    cursor: default;
+    transform: none;
+    box-shadow: none;
+  }
+  .control-btn.reveal:hover:not(:disabled) {
+    border-color: var(--ac);
+    background: var(--bg);
+    color: var(--ac);
+  }
+  .control-btn.reset:hover:not(:disabled) {
+    border-color: var(--info);
+    background: var(--bg);
+    color: var(--info);
+  }
+  .control-btn.undo:hover:not(:disabled) {
+    border-color: var(--mu);
+    background: var(--bg);
+    color: var(--tx);
+  }
+
+  /* ---------- Fish (shared with the yard) ---------- */
+  .fish-link {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.35rem;
+    padding: 0.25rem 0.75rem;
+    border-radius: 999px;
+    background: var(--ac);
+    color: var(--on);
+    font-weight: 600;
+    font-size: 0.9rem;
+    text-decoration: none;
+    transition: opacity 0.2s ease, transform 0.2s ease;
+  }
+  .fish-link:hover { opacity: 0.85; }
+  .fish-link:focus-visible { outline: 2px solid var(--ac); outline-offset: 2px; }
+  .fish-link.bump { transform: scale(1.18); }
+  .fish-link .to-yard { font-weight: 400; opacity: 0.8; font-size: 0.8rem; }
+
+  .assembly { position: relative; }
+  .fish-pop {
+    position: absolute;
+    left: 50%;
+    top: 0.4rem;
+    transform: translateX(-50%);
+    background: var(--ac);
+    color: var(--on);
+    font-weight: 700;
+    padding: 0.3rem 0.8rem;
+    border-radius: 999px;
+    pointer-events: none;
+    white-space: nowrap;
+    z-index: 5;
+    animation: fishpop 1.4s ease-out forwards;
+  }
+  @keyframes fishpop {
+    0% { opacity: 0; transform: translate(-50%, 8px) scale(0.8); }
+    15% { opacity: 1; transform: translate(-50%, 0) scale(1.05); }
+    70% { opacity: 1; transform: translate(-50%, -18px) scale(1); }
+    100% { opacity: 0; transform: translate(-50%, -30px); }
+  }
+  /* Toast confirming a missed word's Hebrew + translit + gloss was
+     copied to the clipboard for revision elsewhere. */
+  .copy-pop {
+    position: absolute;
+    left: 50%;
+    bottom: 0.4rem;
+    transform: translateX(-50%);
+    background: var(--bad);
+    color: #fff;
+    font-weight: 700;
+    font-size: 0.85rem;
+    padding: 0.3rem 0.8rem;
+    border-radius: 999px;
+    pointer-events: none;
+    white-space: nowrap;
+    z-index: 5;
+    animation: copypop 1.6s ease-out forwards;
+  }
+  @keyframes copypop {
+    0% { opacity: 0; transform: translate(-50%, -6px) scale(0.85); }
+    15% { opacity: 1; transform: translate(-50%, 0) scale(1); }
+    75% { opacity: 1; transform: translate(-50%, 0) scale(1); }
+    100% { opacity: 0; transform: translate(-50%, -8px); }
+  }
+  @media (prefers-reduced-motion: reduce) {
+    .fish-pop { animation-duration: 1.6s; animation-name: fishfade; }
+    @keyframes fishfade { 0%, 70% { opacity: 1; } 100% { opacity: 0; } }
+    .fish-link { transition: none; }
+    .copy-pop { animation-duration: 1.6s; animation-name: fishfade; }
+    .streak-pop { animation-duration: 1.6s; animation-name: fishfade; }
+    .streak-badge { transition: none; }
+  }
+
+  /* ---------- Site footer (links back to the hub) ---------- */
+  .site-foot {
+    max-width: 880px;
+    margin: 1.6rem auto 0;
+    padding-top: 1.1rem;
+    border-top: 1px solid var(--line);
+    color: var(--mu);
+    font-size: 0.85rem;
+  }
+  .site-foot p { margin: 0 0 0.3rem; }
+  .site-foot a { color: var(--ac); text-decoration: none; }
+  .site-foot a:hover { text-decoration: underline; }
+
+  @media (max-width: 640px) {
+    .shell { padding: 1.4rem 1.1rem 1.8rem; }
+    .assembled { font-size: 2.2rem; }
+    .assembled.long { font-size: 1.8rem; letter-spacing: 0.1rem; }
+    .bank button { width: 2.3rem; height: 2.3rem; font-size: 1.35rem; }
+    .nav-btn { width: 2rem; height: 2rem; }
+  }
+</style>
+</head>
+<body>
+
+<header class="site-brand">
+  <a href="https://cmainechan.github.io/heb/" class="brand-link">
+    <span class="mark" aria-hidden="true" lang="he">א</span>
+    <span class="name">Biblical Hebrew Practice</span>
+  </a>
+</header>
+
+<div class="shell">
+  <header>
+    <h1>Noun Builder</h1>
+    <p class="subtitle">Tap the letters, right to left, to spell the word shown.</p>
+    <div class="rule"></div>
+  </header>
+
+  <div class="progress-row">
+    <span id="progress-text">Card 1 of 1</span>
+    <span class="progress-row-right">
+      <span id="streak-badge" class="streak-badge"></span>
+      <a href="../inn/" class="fish-link" id="fish-link" title="Spend your fish in the inn">
+        <span id="fish-count">🐟 0</span><span class="to-yard">Inn</span>
+      </a>
+    </span>
+  </div>
+  <div class="progress-track">
+    <div class="progress-fill" id="progress-fill" style="width: 0%;"></div>
+  </div>
+
+  <div class="layout">
+    <div class="flashcard">
+      <div class="flashcard-card">
+        <div class="image-wrap emoji-wrap">
+          <div class="emoji-field" id="flashcard-emoji" role="img" aria-label="flashcard"></div>
+          <div class="emoji-hint" id="emoji-hint"></div>
+          <button id="prev-btn" class="nav-btn nav-prev" aria-label="Previous card" title="Previous card">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 18l-6-6 6-6"/></svg>
+          </button>
+          <button id="next-btn" class="nav-btn nav-next" aria-label="Next card" title="Next card">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 18l6-6-6-6"/></svg>
+          </button>
+          <div class="card-banner" id="card-banner">
+            <div class="banner-word" id="banner-word"></div>
+            <div class="banner-caption">
+              <span class="banner-gloss" id="banner-gloss"></span>
+              <span class="banner-translit" id="banner-translit"></span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="assembly">
+      <div class="assembled" id="assembled"></div>
+      <div class="bank" id="bank"></div>
+      <div class="controls">
+        <button id="undo-btn" class="control-btn undo" title="Undo last letter">
+          <svg viewBox="0 0 24 24" fill="none" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M9 14 4 9l5-5"/><path d="M4 9h10.5a5.5 5.5 0 0 1 0 11H11"/></svg>
+          <span>Undo</span>
+        </button>
+        <button id="reveal-btn" class="control-btn reveal" title="Show the answer">
+          <svg viewBox="0 0 24 24" fill="none" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M9 18h6"/><path d="M10 22h4"/><path d="M12 2a7 7 0 0 0-4 12.7c.6.5 1 1.2 1 2.3h6c0-1.1.4-1.8 1-2.3A7 7 0 0 0 12 2Z"/></svg>
+          <span>Show answer</span>
+        </button>
+        <button id="reset-btn" class="control-btn reset" title="Reset this word">
+          <svg viewBox="0 0 24 24" fill="none" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M21 12a9 9 0 1 1-3-6.7"/><path d="M21 3v6h-6"/></svg>
+          <span>Reset</span>
+        </button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<footer class="site-foot">
+  <p><a href="https://cmainechan.github.io/heb/">&larr; All tools</a></p>
+</footer>
+
+<script>
+// ---------- Config ----------
+// Fixed aleph-bet order, sofit forms placed right after their base letter.
+// This is a persistent keyboard: keys are never removed or shuffled, so
+// words with a repeated letter (e.g. two lameds) work with no special
+// handling — the student just presses that key twice. The .bank container
+// has direction: rtl, so this array's order renders aleph top-right,
+// wrapping right-to-left row by row, like a real Hebrew keyboard.
+const FULL_ALPHABET = [
+  "א", "ב", "ג", "ד", "ה", "ו", "ז", "ח", "ט", "י",
+  "כ", "ך", "ל", "מ", "ם", "נ", "ן", "ס", "ע",
+  "פ", "ף", "צ", "ץ", "ק", "ר", "ש", "ת"
+];
+
+// ---------- Queue ----------
+// The deck is a persistent queue saved in localStorage, so a student can
+// work through it in batches across sessions without repeats. A round is
+// one shuffled pass through every word; queue.order[0..pos) are done this
+// round and queue.order[pos] is the next card to do. A card is only done
+// once solved or revealed — "next" on an unsolved card moves it to the end
+// of the round instead, so hard words can't be dodged. "Prev" steps back
+// through cards already done this round, for extra practice that doesn't
+// change progress. When a round finishes, any cards revealed via "Show
+// answer" this round (queue.corrections) are collected into a correction
+// round — a shuffled pass through just those words, with queue.phase
+// switched to "correction" so the progress line says "Correction" instead
+// of "Card". A card revealed again during a correction round queues up for
+// another one afterwards, so it keeps cycling until solved by typing. Once
+// there are no pending corrections, a fresh full round begins.
+const STORAGE_KEY = "hebrew-noun-builder:queue";
+const QUEUE_VERSION = 2;
+// Cards from the end of one round kept out of the start of the next,
+// so the same word never appears twice in a row across the boundary.
+const ROUND_GAP = 5;
+
+// ---------- State ----------
+let WORDS = {};        // id -> word
+let queue = null;      // { v, order: [id], pos, corrections: [id], phase: "main"|"correction" }
+let view = 0;          // index in queue.order of the card on screen
+let current = null;    // id of the card on screen
+let currentDone = false;
+let cardNumber = 1;    // position of the card on screen within the round
+// Length of the round the card on screen belongs to, captured alongside
+// cardNumber. Needed because a reveal or correct answer on the round's
+// last card can swap queue.order for the next round's (a different
+// length) before the student clicks Next — reading queue.order.length
+// live at that point would pair the old cardNumber with a mismatched
+// total, e.g. "Correction 2 of 1".
+let roundTotal = 1;
+let assembled = [];
+let status = null; // null | "correct" | "wrong" | "revealed"
+let hadWrong = false;  // any wrong attempt on the card on screen (Reset doesn't clear it)
+
+// ---------- Fish ----------
+// Shared wallet with the inn (cmainechan.github.io/inn/). Every page on
+// the site reads and writes the same "fish" key in localStorage.
+// Rewards are only for new cards this round: first try = 2 (doubled to 4
+// once a streak bonus is active, see below), after a mistake = 1, Show
+// answer or re-practicing a done card = 0.
+const FISH_KEY = "fish";
+const FISH_FIRST_TRY = 2;
+const FISH_AFTER_MISTAKE = 1;
+
+// ---------- Daily progress ----------
+// Shared with the heb landing page dashboard (cmainechan.github.io/heb/).
+// Aggregate-only, reset whenever the stored date isn't today.
+const DAILY_KEY = "heb:daily";
+function todayStr() {
+  const d = new Date();
+  return d.getFullYear() + "-" + String(d.getMonth() + 1).padStart(2, "0") + "-" + String(d.getDate()).padStart(2, "0");
+}
+function bumpDaily(widget) {
+  let data;
+  try { data = JSON.parse(localStorage.getItem(DAILY_KEY)) || {}; } catch (e) { data = {}; }
+  const today = todayStr();
+  if (data.date !== today) data = { date: today };
+  data[widget] = (data[widget] || 0) + 1;
+  try { localStorage.setItem(DAILY_KEY, JSON.stringify(data)); } catch (e) {}
+}
+
+function getFish() {
+  let n = 0;
+  try { n = parseInt(localStorage.getItem(FISH_KEY) || "0", 10); } catch (e) {}
+  return Number.isFinite(n) && n > 0 ? n : 0;
+}
+
+function renderFish(bump) {
+  const link = document.getElementById("fish-link");
+  document.getElementById("fish-count").textContent = `🐟 ${getFish()}`;
+  if (bump) {
+    link.classList.add("bump");
+    setTimeout(() => link.classList.remove("bump"), 220);
+  }
+}
+
+function addFish(amount) {
+  if (amount <= 0) return;
+  try { localStorage.setItem(FISH_KEY, String(getFish() + amount)); } catch (e) {}
+  renderFish(true);
+  const pop = document.createElement("div");
+  pop.className = "fish-pop";
+  pop.textContent = `+${amount} 🐟`;
+  document.querySelector(".assembly").appendChild(pop);
+  setTimeout(() => pop.remove(), 1500);
+}
+
+// Keep the count right if the yard is open in another tab.
+window.addEventListener("storage", e => { if (e.key === FISH_KEY) renderFish(true); });
+renderFish();
+
+// ---------- Streak ----------
+// Local to this tool (not shared with the inn like fish is). Counts
+// consecutive first-try-correct answers. Each tier below, once reached,
+// raises the first-try reward going forward -- the Nth correct-in-a-row
+// still earns the previous tier's amount, the (N+1)th earns the new one --
+// until a wrong attempt or a reveal breaks the streak and it has to build
+// back up from zero.
+const STREAK_KEY = "hebrew-noun-builder:streak";
+const STREAK_TIERS = [
+  { streak: 5, reward: 4 },
+  { streak: 10, reward: 8 },
+  { streak: 15, reward: 12 },
+  { streak: 20, reward: 16 },
+];
+
+function getStreak() {
+  let n = 0;
+  try { n = parseInt(localStorage.getItem(STREAK_KEY) || "0", 10); } catch (e) {}
+  return Number.isFinite(n) && n > 0 ? n : 0;
+}
+
+function setStreak(n) {
+  const prev = getStreak();
+  try { localStorage.setItem(STREAK_KEY, String(n)); } catch (e) {}
+  renderStreak();
+  if (STREAK_TIERS.some(tier => prev < tier.streak && n >= tier.streak)) {
+    streakBonusPop();
+  }
+}
+
+// A one-off pulse + toast the moment the streak crosses into a new tier.
+function streakBonusPop() {
+  const badge = document.getElementById("streak-badge");
+  badge.classList.add("bump");
+  setTimeout(() => badge.classList.remove("bump"), 220);
+  const pop = document.createElement("div");
+  pop.className = "streak-pop";
+  pop.textContent = "🔥 Streak bonus!";
+  document.querySelector(".progress-row").appendChild(pop);
+  setTimeout(() => pop.remove(), 1600);
+}
+
+// The highest-reward tier this streak qualifies for, or the plain
+// first-try reward if it hasn't reached the first tier yet.
+function firstTryReward(streak) {
+  let reward = FISH_FIRST_TRY;
+  for (const tier of STREAK_TIERS) {
+    if (streak >= tier.streak) reward = tier.reward;
+  }
+  return reward;
+}
+
+function nextStreakTier(streak) {
+  return STREAK_TIERS.find(tier => streak < tier.streak) || null;
+}
+
+function renderStreak() {
+  const streak = getStreak();
+  const badge = document.getElementById("streak-badge");
+  const boosted = streak >= STREAK_TIERS[0].streak;
+  badge.textContent = `🔥 ${streak}`;
+  badge.style.display = streak > 0 ? "inline" : "none";
+  badge.classList.toggle("boosted", boosted);
+  const next = nextStreakTier(streak);
+  badge.title = next
+    ? `${next.streak - streak} more first-try answer${next.streak - streak === 1 ? "" : "s"} in a row for ${next.reward} fish each`
+    : `Max streak bonus active: ${firstTryReward(streak)} fish per first-try answer`;
+}
+
+renderStreak();
+
+function shuffle(arr) {
+  const a = [...arr];
+  for (let i = a.length - 1; i > 0; i--) {
+    const j = Math.floor(Math.random() * (i + 1));
+    [a[i], a[j]] = [a[j], a[i]];
+  }
+  return a;
+}
+
+function saveQueue() {
+  try { localStorage.setItem(STORAGE_KEY, JSON.stringify(queue)); } catch (e) {}
+}
+
+function freshRound(prevOrder) {
+  const ids = Object.keys(WORDS);
+  const gap = Math.min(ROUND_GAP, Math.floor(ids.length / 2));
+  const tail = new Set(prevOrder.slice(-gap).filter(id => id in WORDS));
+  const others = shuffle(ids.filter(id => !tail.has(id)));
+  const head = others.slice(0, gap);
+  const rest = shuffle([...others.slice(gap), ...tail]);
+  return { v: QUEUE_VERSION, order: [...head, ...rest], pos: 0, corrections: [], phase: "main" };
+}
+
+// Start a correction round in place: a shuffled pass through just the
+// cards revealed via "Show answer" this round.
+function startCorrectionRound() {
+  const ids = Array.from(new Set(queue.corrections));
+  queue.corrections = [];
+  queue.phase = "correction";
+  queue.order = shuffle(ids);
+  queue.pos = 0;
+}
+
+// Called once the current round (main or correction) is fully done: either
+// hands off to a correction round for cards revealed this round, or starts
+// a fresh full round if there are none pending.
+function advanceRound() {
+  if (queue.corrections.length > 0) {
+    startCorrectionRound();
+  } else {
+    queue = freshRound(queue.order);
+  }
+}
+
+// Restore the saved queue, reconciled against the current word list:
+// removed words are dropped, new words are slotted at random into the
+// not-yet-done part of the round.
+function loadQueue() {
+  let saved = null;
+  try { saved = JSON.parse(localStorage.getItem(STORAGE_KEY)); } catch (e) {}
+  // Migrate a v1 queue (no corrections/phase) forward in place.
+  if (saved && saved.v === 1 && Array.isArray(saved.order) && Number.isInteger(saved.pos)) {
+    saved = { v: QUEUE_VERSION, order: saved.order, pos: saved.pos, corrections: [], phase: "main" };
+  }
+  const valid = saved && saved.v === QUEUE_VERSION && Array.isArray(saved.order) &&
+    Number.isInteger(saved.pos) && saved.pos >= 0 && saved.pos <= saved.order.length &&
+    Array.isArray(saved.corrections) && (saved.phase === "main" || saved.phase === "correction");
+  if (!valid) {
+    queue = freshRound([]);
+  } else {
+    const seen = new Set();
+    const keep = id => id in WORDS && !seen.has(id) && seen.add(id);
+    const done = saved.order.slice(0, saved.pos).filter(keep);
+    const todo = saved.order.slice(saved.pos).filter(keep);
+    // Only slot brand-new words into an in-progress main round. A correction
+    // round only ever contains cards revealed this round — new words wait
+    // for the next full round, where freshRound() picks up everyone anyway.
+    if (saved.phase === "main") {
+      Object.keys(WORDS).filter(id => !seen.has(id)).forEach(id => {
+        todo.splice(Math.floor(Math.random() * (todo.length + 1)), 0, id);
+      });
+    }
+    const corrections = saved.corrections.filter(id => id in WORDS);
+    queue = { v: QUEUE_VERSION, order: [...done, ...todo], pos: done.length, corrections, phase: saved.phase };
+    if (todo.length === 0) advanceRound();
+  }
+  saveQueue();
+}
+
+function markDone() {
+  if (currentDone) return;
+  currentDone = true;
+  queue.pos++;
+  if (queue.pos >= queue.order.length) {
+    advanceRound();
+    view = -1; // the finished card isn't part of the new round; next -> its first card
+  }
+  saveQueue();
+}
+
+function showAt(i) {
+  view = i;
+  current = queue.order[i];
+  currentDone = i < queue.pos;
+  cardNumber = i + 1;
+  roundTotal = queue.order.length;
+  hadWrong = false;
+  resetAttempt();
+}
+
+function resetAttempt() {
+  assembled = [];
+  status = null;
+  render();
+}
+
+// ---------- Emoji field ----------
+const EMOJI_COLUMNS = 3;
+const EMOJI_PER_HALF = 8;   // one loop = 8 cells; the track holds 2 copies
+let emojiShown = null;
+
+function buildEmojiField(word) {
+  const field = document.getElementById("flashcard-emoji");
+  field.setAttribute("aria-label", word.hint || word.gloss);
+  if (emojiShown === word.emoji) return;
+  emojiShown = word.emoji;
+  field.dataset.emoji = word.emoji;
+  field.innerHTML = "";
+  for (let c = 0; c < EMOJI_COLUMNS; c++) {
+    const col = document.createElement("div");
+    col.className = "emoji-col";
+    const track = document.createElement("div");
+    track.className = "emoji-track";
+    for (let i = 0; i < EMOJI_PER_HALF * 2; i++) {
+      const span = document.createElement("span");
+      span.textContent = word.emoji;
+      track.appendChild(span);
+    }
+    col.appendChild(track);
+    field.appendChild(col);
+  }
+}
+
+// ---------- Rendering ----------
+function render() {
+  const word = WORDS[current];
+  const total = queue.order.length;
+
+  buildEmojiField(word);
+  document.getElementById("emoji-hint").textContent = word.hint || "";
+
+  // Progress
+  document.getElementById("progress-text").textContent =
+    `${queue.phase === "correction" ? "Correction" : "Card"} ${cardNumber} of ${roundTotal} this round`;
+  document.getElementById("progress-fill").style.width =
+    `${(cardNumber / roundTotal) * 100}%`;
+
+  // Assembled slots (right-to-left). One span per slot so that, on a wrong
+  // attempt, each letter that doesn't match the answer at that position
+  // can be marked in red.
+  const slots = [...assembled];
+  while (slots.length < word.letters.length) slots.push("_");
+  const assembledEl = document.getElementById("assembled");
+  assembledEl.innerHTML = "";
+  slots.forEach((letter, i) => {
+    if (i > 0) assembledEl.appendChild(document.createTextNode(" "));
+    const span = document.createElement("span");
+    span.textContent = letter;
+    if (status === "wrong" && letter !== word.letters[i]) {
+      span.className = "slot-wrong";
+    }
+    assembledEl.appendChild(span);
+  });
+  assembledEl.className = "assembled" + (word.letters.length >= 6 ? " long" : "") + (
+    status === "correct" ? " is-correct" :
+    status === "revealed" ? " is-revealed" :
+    status === "wrong" ? " is-wrong" : ""
+  );
+
+  // Prev is only available once there's a done card this round to go back to
+  document.getElementById("prev-btn").disabled = view <= 0;
+  document.getElementById("next-btn").disabled = total <= 1;
+
+  // Letter keyboard — fixed aleph-bet order, always all 27 keys,
+  // never removed or reordered, so duplicate letters just work.
+  const solved = status === "correct" || status === "revealed";
+  const isFull = assembled.length >= word.letters.length;
+  const bank = document.getElementById("bank");
+  bank.innerHTML = "";
+  FULL_ALPHABET.forEach(letter => {
+    const btn = document.createElement("button");
+    btn.textContent = letter;
+    btn.disabled = solved || isFull;
+    btn.onclick = () => {
+      assembled.push(letter);
+      if (assembled.length === word.letters.length) {
+        status = arraysEqual(assembled, word.letters) ? "correct" : "wrong";
+        if (status === "wrong") {
+          hadWrong = true;
+          setStreak(0);
+        }
+        if (status === "correct") {
+          const isNew = !currentDone; // false when re-practicing via Prev
+          markDone();
+          if (isNew) {
+            bumpDaily("hnb");
+            if (hadWrong) {
+              addFish(FISH_AFTER_MISTAKE);
+            } else {
+              addFish(firstTryReward(getStreak()));
+              setStreak(getStreak() + 1);
+            }
+          }
+        }
+      }
+      render();
+    };
+    bank.appendChild(btn);
+  });
+
+  // Undo / reset / reveal
+  document.getElementById("undo-btn").disabled = assembled.length === 0;
+  document.getElementById("reveal-btn").disabled = solved;
+
+  // Image banner — word, gloss, transliteration, shown once correct or revealed
+  const banner = document.getElementById("card-banner");
+  if (solved) {
+    document.getElementById("banner-word").textContent = word.pointed || word.letters.join("");
+    document.getElementById("banner-gloss").textContent = word.gloss;
+    document.getElementById("banner-translit").textContent = `/ ${word.translit} /`;
+    banner.classList.add("show");
+  } else {
+    banner.classList.remove("show");
+  }
+}
+
+function arraysEqual(a, b) {
+  return a.length === b.length && a.every((v, i) => v === b[i]);
+}
+
+// ---------- Revision clipboard ----------
+// On Show answer, copy the Hebrew word + transliteration + gloss so it
+// can be pasted straight into a revision list elsewhere.
+function copyForRevision(word) {
+  const text = `${word.pointed || word.letters.join("")}\t/${word.translit}/\t${word.gloss}`;
+  if (!navigator.clipboard || !navigator.clipboard.writeText) return;
+  navigator.clipboard.writeText(text).then(() => {
+    const pop = document.createElement("div");
+    pop.className = "copy-pop";
+    pop.textContent = "📋 Copied for revision";
+    document.querySelector(".assembly").appendChild(pop);
+    setTimeout(() => pop.remove(), 1600);
+  }).catch(() => {});
+}
+
+document.getElementById("undo-btn").onclick = () => {
+  if (assembled.length === 0) return;
+  assembled.pop();
+  status = null;
+  render();
+};
+
+document.getElementById("reset-btn").onclick = resetAttempt;
+
+// Next: step forward towards the next card to do. On that card, if it's
+// unsolved, move it to the end of the round so it comes back later.
+document.getElementById("next-btn").onclick = () => {
+  if (view === queue.pos && !currentDone) {
+    queue.order.push(queue.order.splice(queue.pos, 1)[0]);
+    saveQueue();
+    showAt(queue.pos);
+  } else {
+    showAt(view + 1);
+  }
+};
+// Prev: step back through cards already done this round.
+document.getElementById("prev-btn").onclick = () => {
+  if (view > 0) showAt(view - 1);
+};
+document.getElementById("reveal-btn").onclick = () => {
+  const word = WORDS[current];
+  assembled = [...word.letters];
+  status = "revealed";
+  // Only queue a correction, and only break the streak, for a genuinely
+  // new reveal this round -- not when re-practicing an already-done card
+  // via Prev.
+  if (!currentDone) {
+    queue.corrections.push(current);
+    setStreak(0);
+  }
+  markDone();
+  copyForRevision(word);
+  render();
+};
+
+// ---------- Physical keyboard ----------
+// Lets a student type the letter bank with the keyboard instead of
+// clicking. Works whether the OS input is already set to Hebrew (e.key is
+// then the Hebrew character itself) or still on English QWERTY, by mapping
+// each English key to the Hebrew letter at the same physical position on
+// the "Hebrew - Aleph With Beth" keyboard layout. Final forms aren't on
+// their own keys in that layout, so they're reached with Shift + the base
+// letter's key instead.
+const QWERTY_TO_HEBREW = {
+  q: "ק", w: "ו", r: "ר", t: "ת", y: "י", u: "ע", p: "פ",
+  s: "ס", d: "ד", f: "ט", g: "ג", h: "ה", j: "ח", k: "כ", l: "ל",
+  z: "ז", x: "צ", c: "ש", v: "ש", b: "ב", n: "נ", m: "מ", ",": "א"
+};
+const QWERTY_SHIFT_TO_FINAL = {
+  k: "ך", m: "ם", n: "ן", p: "ף", x: "ץ"
+};
+
+document.addEventListener("keydown", e => {
+  if (e.ctrlKey || e.metaKey || e.altKey) return;
+
+  if (e.key === "Backspace") {
+    // Always suppress the browser's own default (e.g. navigating back in
+    // history), even when there's nothing to undo yet.
+    e.preventDefault();
+    const undoBtn = document.getElementById("undo-btn");
+    if (!undoBtn.disabled) undoBtn.click();
+    return;
+  }
+
+  if (e.key === "Enter") {
+    const nextBtn = document.getElementById("next-btn");
+    if (!nextBtn.disabled) { e.preventDefault(); nextBtn.click(); }
+    return;
+  }
+
+  const key = e.key.toLowerCase();
+  const letter = FULL_ALPHABET.includes(e.key)
+    ? e.key
+    : (e.shiftKey && QWERTY_SHIFT_TO_FINAL[key]) || QWERTY_TO_HEBREW[key];
+  if (!letter || !FULL_ALPHABET.includes(letter)) return;
+
+  const btn = Array.from(document.getElementById("bank").children)
+    .find(b => b.textContent === letter);
+  if (btn && !btn.disabled) {
+    e.preventDefault();
+    btn.click();
+  }
+});
+
+// ---------- Boot ----------
+fetch("words.json")
+  .then(r => r.json())
+  .then(data => {
+    WORDS = Object.create(null);
+    data.forEach(w => { WORDS[w.id] = w; });
+    loadQueue();
+    // Ask the browser not to evict the saved queue under storage pressure.
+    if (navigator.storage && navigator.storage.persist) {
+      navigator.storage.persist().catch(() => {});
+    }
+    showAt(queue.pos);
+  })
+  .catch(err => {
+    document.body.innerHTML =
+      "<p style='color:red; padding:2rem;'>Could not load words.json. Make sure it's in the same folder as this page and that you're viewing this via a web server (e.g. GitHub Pages), not by double-clicking the file.</p>";
+    console.error(err);
+  });
+</script>
+
+</body>
+</html>
