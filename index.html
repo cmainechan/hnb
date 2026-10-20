@@ -194,57 +194,44 @@
   }
   .image-wrap {
     position: relative;
-    aspect-ratio: 1 / 1;
+    aspect-ratio: 16 / 10;
     border-radius: 10px;
     overflow: hidden;
-    background: var(--line);
+    background: radial-gradient(110% 100% at 50% 40%, color-mix(in srgb, var(--ac) 7%, var(--card)) 0%, var(--line) 100%);
   }
-  .emoji-wrap {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    background: var(--line);
-  }
-  /* Three columns of the same emoji, drifting downward in a loop. The middle
-     column sits half a cell lower so the rows are staggered. Each track holds
-     two identical halves and slides exactly one half, so the loop is seamless. */
-  .emoji-field {
-    --cell: clamp(4.4rem, 19vw, 5.8rem);
+  /* One image centred on a soft medallion. The bottom 2.7rem is left clear
+     for the optional hint caption. */
+  .medal {
     position: absolute;
-    inset: 0;
-    display: flex;
-    overflow: hidden;
+    top: 0.7rem;
+    left: 50%;
+    translate: -50% 0;
+    height: calc(100% - 3.4rem);
+    aspect-ratio: 1;
+    border-radius: 50%;
+    display: grid;
+    place-items: center;
     user-select: none;
-    -webkit-mask-image: linear-gradient(180deg, transparent 0, #000 12%, #000 88%, transparent 100%);
-    mask-image: linear-gradient(180deg, transparent 0, #000 12%, #000 88%, transparent 100%);
+    background: radial-gradient(circle at 50% 38%, color-mix(in srgb, var(--ac) 30%, var(--card)) 0%, color-mix(in srgb, var(--ac) 9%, var(--line)) 100%);
+    box-shadow: inset 0 0 0 1px var(--line), 0 12px 16px -10px rgba(0, 0, 0, 0.55);
   }
-  .emoji-col { flex: 1; height: 100%; overflow: hidden; }
-  .emoji-col:nth-child(2) .emoji-track { margin-top: calc(var(--cell) * -0.5); }
-  .emoji-track {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    animation: emoji-fall 16s linear infinite;
-    will-change: transform;
-  }
-  .emoji-track span {
-    display: block;
-    height: var(--cell);
-    line-height: var(--cell);
-    font-size: calc(var(--cell) * 0.72);
+  .medal.pop { animation: medal-pop 0.25s ease-out; }
+  .medal-emoji {
+    font-size: clamp(3.6rem, 12vw, 5.6rem);
+    line-height: 1;
     font-family: "Apple Color Emoji", "Segoe UI Emoji", "Noto Color Emoji", "Twemoji Mozilla", sans-serif;
   }
-  @keyframes emoji-fall {
-    from { transform: translateY(-50%); }
-    to   { transform: translateY(0); }
+  @keyframes medal-pop {
+    from { opacity: 0; transform: scale(0.94); }
+    to   { opacity: 1; transform: none; }
   }
   @media (prefers-reduced-motion: reduce) {
-    .emoji-track { animation: none; }
+    .medal.pop { animation: none; }
   }
   /* Optional one-or-two-word cue for emojis that could mean several words. */
   .emoji-hint {
     position: absolute;
-    top: 0.7rem;
+    bottom: 0.55rem;
     left: 50%;
     transform: translateX(-50%);
     padding: 0.2rem 0.75rem;
@@ -581,7 +568,7 @@
     <div class="flashcard">
       <div class="flashcard-card">
         <div class="image-wrap emoji-wrap">
-          <div class="emoji-field" id="flashcard-emoji" role="img" aria-label="flashcard"></div>
+          <div class="medal" id="flashcard-emoji" role="img" aria-label="flashcard"><span class="medal-emoji"></span></div>
           <div class="emoji-hint" id="emoji-hint"></div>
           <button id="prev-btn" class="nav-btn nav-prev" aria-label="Previous card" title="Previous card">
             <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 18l-6-6 6-6"/></svg>
@@ -912,31 +899,19 @@ function resetAttempt() {
   render();
 }
 
-// ---------- Emoji field ----------
-const EMOJI_COLUMNS = 3;
-const EMOJI_PER_HALF = 8;   // one loop = 8 cells; the track holds 2 copies
+// ---------- Emoji medallion ----------
 let emojiShown = null;
 
 function buildEmojiField(word) {
-  const field = document.getElementById("flashcard-emoji");
-  field.setAttribute("aria-label", word.hint || word.gloss);
+  const medal = document.getElementById("flashcard-emoji");
+  medal.setAttribute("aria-label", word.hint || word.gloss);
   if (emojiShown === word.emoji) return;
   emojiShown = word.emoji;
-  field.dataset.emoji = word.emoji;
-  field.innerHTML = "";
-  for (let c = 0; c < EMOJI_COLUMNS; c++) {
-    const col = document.createElement("div");
-    col.className = "emoji-col";
-    const track = document.createElement("div");
-    track.className = "emoji-track";
-    for (let i = 0; i < EMOJI_PER_HALF * 2; i++) {
-      const span = document.createElement("span");
-      span.textContent = word.emoji;
-      track.appendChild(span);
-    }
-    col.appendChild(track);
-    field.appendChild(col);
-  }
+  medal.querySelector(".medal-emoji").textContent = word.emoji;
+  // Restart the short fade-in whenever the picture changes.
+  medal.classList.remove("pop");
+  void medal.offsetWidth;
+  medal.classList.add("pop");
 }
 
 // ---------- Rendering ----------

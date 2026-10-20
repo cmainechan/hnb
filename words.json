@@ -1991,6 +1991,18 @@
     "hint": "sheep"
   },
   {
+    "id": "lekhem",
+    "emoji": "🍞",
+    "letters": [
+      "ל",
+      "ח",
+      "ם"
+    ],
+    "translit": "lekhem",
+    "gloss": "bread",
+    "pointed": "לֶחֶם"
+  },
+  {
     "id": "kokhav",
     "emoji": "⭐",
     "letters": [
@@ -2016,17 +2028,5 @@
     "translit": "tsefarde'a",
     "gloss": "frog",
     "pointed": "צְפַרְדֵּעַ"
-  },
-  {
-    "id": "lekhem",
-    "emoji": "🍞",
-    "letters": [
-      "ל",
-      "ח",
-      "ם"
-    ],
-    "translit": "lekhem",
-    "gloss": "bread",
-    "pointed": "לֶחֶם"
   }
 ]
