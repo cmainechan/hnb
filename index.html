@@ -194,33 +194,41 @@
   }
   .image-wrap {
     position: relative;
-    aspect-ratio: 16 / 10;
+    aspect-ratio: 1 / 1;
     border-radius: 10px;
     overflow: hidden;
     background: radial-gradient(110% 100% at 50% 40%, color-mix(in srgb, var(--ac) 7%, var(--card)) 0%, var(--line) 100%);
   }
-  /* One image centred on a soft medallion. The bottom 2.7rem is left clear
-     for the optional hint caption. */
+  /* One image centred on a soft medallion in the middle of the box. */
   .medal {
     position: absolute;
-    top: 0.7rem;
+    top: 50%;
     left: 50%;
-    translate: -50% 0;
-    height: calc(100% - 3.4rem);
+    translate: -50% -50%;
+    width: 66%;
     aspect-ratio: 1;
     border-radius: 50%;
     display: grid;
     place-items: center;
     user-select: none;
+    container-type: inline-size;
     background: radial-gradient(circle at 50% 38%, color-mix(in srgb, var(--ac) 30%, var(--card)) 0%, color-mix(in srgb, var(--ac) 9%, var(--line)) 100%);
     box-shadow: inset 0 0 0 1px var(--line), 0 12px 16px -10px rgba(0, 0, 0, 0.55);
   }
   .medal.pop { animation: medal-pop 0.25s ease-out; }
   .medal-emoji {
     font-size: clamp(3.6rem, 12vw, 5.6rem);
+    font-size: 48cqw; /* scales with the medallion where supported */
     line-height: 1;
     font-family: "Apple Color Emoji", "Segoe UI Emoji", "Noto Color Emoji", "Twemoji Mozilla", sans-serif;
   }
+  .medal-img {
+    width: 66%;
+    height: 66%;
+    object-fit: contain;
+    pointer-events: none;
+  }
+  .medal.has-image .medal-emoji, .medal:not(.has-image) .medal-img { display: none; }
   @keyframes medal-pop {
     from { opacity: 0; transform: scale(0.94); }
     to   { opacity: 1; transform: none; }
@@ -568,7 +576,7 @@
     <div class="flashcard">
       <div class="flashcard-card">
         <div class="image-wrap emoji-wrap">
-          <div class="medal" id="flashcard-emoji" role="img" aria-label="flashcard"><span class="medal-emoji"></span></div>
+          <div class="medal" id="flashcard-emoji" role="img" aria-label="flashcard"><span class="medal-emoji"></span><img class="medal-img" alt=""></div>
           <div class="emoji-hint" id="emoji-hint"></div>
           <button id="prev-btn" class="nav-btn nav-prev" aria-label="Previous card" title="Previous card">
             <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 18l-6-6 6-6"/></svg>
@@ -905,9 +913,20 @@ let emojiShown = null;
 function buildEmojiField(word) {
   const medal = document.getElementById("flashcard-emoji");
   medal.setAttribute("aria-label", word.hint || word.gloss);
-  if (emojiShown === word.emoji) return;
-  emojiShown = word.emoji;
-  medal.querySelector(".medal-emoji").textContent = word.emoji;
+  const shown = word.image || word.emoji;
+  if (emojiShown === shown) return;
+  emojiShown = shown;
+  medal.querySelector(".medal-emoji").textContent = word.emoji || "";
+  const img = medal.querySelector(".medal-img");
+  // An image replaces the emoji; if it fails to load, fall back to the emoji.
+  img.onerror = () => medal.classList.remove("has-image");
+  if (word.image) {
+    img.src = word.image;
+    medal.classList.add("has-image");
+  } else {
+    img.removeAttribute("src");
+    medal.classList.remove("has-image");
+  }
   // Restart the short fade-in whenever the picture changes.
   medal.classList.remove("pop");
   void medal.offsetWidth;
@@ -952,7 +971,11 @@ function render() {
 
   // Prev is only available once there's a done card this round to go back to
   document.getElementById("prev-btn").disabled = view <= 0;
-  document.getElementById("next-btn").disabled = total <= 1;
+  // Next steps forward through done cards (view < pos) or, on the current
+  // card, defers it to the end of the round (needs another card to defer to).
+  // view -1 means the round just rolled over, so Next must start the new one
+  // even if it holds a single card (e.g. a one-word correction round).
+  document.getElementById("next-btn").disabled = !(view < queue.pos || total > 1);
 
   // Letter keyboard — fixed aleph-bet order, always all 27 keys,
   // never removed or reordered, so duplicate letters just work.
