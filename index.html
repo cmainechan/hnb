@@ -206,6 +206,7 @@
     left: 50%;
     translate: -50% -50%;
     width: 66%;
+    height: 66%; /* the box is square, so this is a circle even if aspect-ratio is ignored under containment */
     aspect-ratio: 1;
     border-radius: 50%;
     display: grid;
@@ -669,6 +670,8 @@ let cardNumber = 1;    // position of the card on screen within the round
 // live at that point would pair the old cardNumber with a mismatched
 // total, e.g. "Correction 2 of 1".
 let roundTotal = 1;
+// Phase of that same round, captured with it for the same reason.
+let roundPhase = "main";
 let assembled = [];
 let status = null; // null | "correct" | "wrong" | "revealed"
 let hadWrong = false;  // any wrong attempt on the card on screen (Reset doesn't clear it)
@@ -897,6 +900,7 @@ function showAt(i) {
   currentDone = i < queue.pos;
   cardNumber = i + 1;
   roundTotal = queue.order.length;
+  roundPhase = queue.phase;
   hadWrong = false;
   resetAttempt();
 }
@@ -943,7 +947,7 @@ function render() {
 
   // Progress
   document.getElementById("progress-text").textContent =
-    `${queue.phase === "correction" ? "Correction" : "Card"} ${cardNumber} of ${roundTotal} this round`;
+    `${roundPhase === "correction" ? "Correction" : "Card"} ${cardNumber} of ${roundTotal} this round`;
   document.getElementById("progress-fill").style.width =
     `${(cardNumber / roundTotal) * 100}%`;
 
