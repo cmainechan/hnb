@@ -1,4 +1,4 @@
-﻿id,emoji,letters,translit,gloss,pointed,hint,image
+id,emoji,letters,translit,gloss,pointed,hint,image
 sefer,📜,ס פ ר,sefer,document,סֵ֫פֶר,document,
 mitsvah,,מ צ ו ה,mitsvah,commandment,מִצְוָה,,img/mitsvah.png
 daat,,ד ע ת,daat,knowledge,דַּ֫עַת,,img/daat.svg
@@ -45,7 +45,7 @@ chamesh,5️⃣,ח מ ש,chamesh,five,חָמֵשׁ,five,
 qol,🔊,ק ו ל,qol,"sound, voice",קוֹל,sound,
 tachat,,ת ח ת,tachat,"under, instead of",תַּ֫חַת,,img/tachat.png
 peh,👄,פ ה,peh,mouth,פֶּה,mouth,
-elef,,א ל ף,elef,thousand,אֶ֫לֶף,,
+elef,,א ל ף,elef,thousand,אֶ֫לֶף,,img/elef.png
 od,,ע ו ד,od,"again, still",עוֹד,,
 sheva,7️⃣,ש ב ע,sheva,seven,שֶׁ֫בַע,seven,
 tsava,,צ ב א,tsava,host,צָבָא,,img/tsava.svg
@@ -129,7 +129,7 @@ petach,,פ ת ח,petach,entrance,פֶּ֫תַח,,
 chayim,,ח י י ם,chayim,life,חַיִּים,,
 zevach,,ז ב ח,zevach,sacrifice,זֶ֫בַח,,
 ayil,🐏,א י ל,ayil,ram,אַ֫יִל,,
-gibor,,ג ב ו ר,gibor,mighty,גִּבּוֹר,,
+gibor,,ג ב ו ר,gibor,mighty,גִּבּוֹר,,img/gibor.png
 levad,,ל ב ד,levad,alone,לְבַד,,
 tsedaqah,,צ ד ק ה,tsedaqah,righteousness,צְדָקָה,,
 sheni,🥈,ש נ י,sheni,second,שֵׁנִי,second,
@@ -156,7 +156,7 @@ par,🐂,פ ר,par,bull,פַּר,bull,
 choq,,ח ק,choq,statute,חֹק,,
 nasi,🤴,נ ש י א,nasi,prince,נָשִׂיא,prince,
 emet,,א מ ת,emet,truth,אֱמֶת,,
-chemah,,ח מ ה,chemah,"heat, wrath",חֵמָה,,
+chemah,😡,ח מ ה,chemah,"heat, wrath",חֵמָה,,
 chatsi,🌓,ח צ י,chatsi,half,חֲצִי,,
 kocha,💪,כ ח,kocha,strength,כֹּחַ,strength,
 etsem,🦴,ע צ ם,etsem,"bone, self",עֶ֫צֶם,,
@@ -164,7 +164,7 @@ qahal,,ק ה ל,qahal,assembly,קָהָל,,
 or-light,💡,א ו ר,or,light,אוֹר,light,
 bekhor,,ב כ ו ר,bekhor,firstborn,בְּכוֹר,,
 rekhev,,ר כ ב,rekhev,chariot(s),רֶ֫כֶב,,
-yashar,,י ש ר,yashar,"straight, right",יָשָׁר,,
+yashar,,י ש ר,yashar,"straight, right",יָשָׁר,,img/yashar.png
 nahar,🏞️,נ ה ר,nahar,river,נָהָר,river,
 peri,🍎,פ ר י,peri,fruit,פְּרִי,fruit,
 tsedeq,,צ ד ק,tsedeq,righteousness,צֶ֫דֶק,,
@@ -172,8 +172,8 @@ paam,,פ ע ם,paam,"time, step",פַּ֫עַם,,
 lashon,👅,ל ש ו ן,lashon,tongue,לָשׁוֹן,,
 mamlakhah,🏰,מ מ ל כ ה,mamlakhah,kingdom,מַמְלָכָה,kingdom,
 toevah,,ת ו ע ב ה,toevah,abomination,תּוֹעֵבָה,,
-achot,,א ח ו ת,achot,sister,אָחוֹת,,
-migrash,,מ ג ר ש,migrash,pastureland,מִגְרָשׁ,,
+achot,,א ח ו ת,achot,sister,אָחוֹת,,img/achot.png
+migrash,,מ ג ר ש,migrash,pastureland,מִגְרָשׁ,,img/migrash.png
 sheqer,🤥,ש ק ר,sheqer,falsehood,שֶׁ֫קֶר,falsehood,
 amud,🏛️,ע מ ו ד,amud,pillar,עַמּוּד,pillar,
 shabat,🕯️,ש ב ת,shabat,sabbath,שַׁבָּת,sabbath,
@@ -183,12 +183,12 @@ keves,🐑,כ ב ש,keves,(male) lamb,כֶּ֫בֶשׂ,lamb,
 shelishi,🥉,ש ל י ש י,shelishi,third,שְׁלִישִׁי,third,
 chuqah,,ח ק ה,chuqah,statute,חֻקָּה,,
 bamah,,ב מ ה,bamah,high place,בָּמָה,,
-mareh,,מ ר א ה,mareh,appearance,מַרְאֶה,,
+mareh,,מ ר א ה,mareh,appearance,מַרְאֶה,,img/mareh.png
 meat,,מ ע ט,meat,little,מְעַט,,
 rochav,,ר ח ב,rochav,width,רֹ֫חַב,,
-raav,,ר ע ב,raav,famine,רָעָב,,
-or-skin,,ע ו ר,or,skin,עוֹר,,
-shevii,,ש ב י ע י,shevii,seventh,שְׁבִיעִי,,
+raav,,ר ע ב,raav,famine,רָעָב,,img/raav.png
+or-skin,,ע ו ר,or,skin,עוֹר,,img/or.png
+shevii,,ש ב י ע י,shevii,seventh,שְׁבִיעִי,,img/shevii.png
 chayah,🐾,ח י ה,chayah,animal(s),חַיָּה,animal,
 chamor,🫏,ח מ ו ר,chamor,(male) donkey,חֲמוֹר,,
 orekh,,א ר ך,orekh,length,אֹ֫רֶךְ,,
@@ -207,7 +207,7 @@ malkhut,,מ ל כ ו ת,malkhut,kingdom,מַלְכוּת,,
 tamim,,ת מ י ם,tamim,"blameless, perfect",תָּמִים,,
 ever,,ע ב ר,ever,(region) beyond,עֵ֫בֶר,,
 yeled,🧒,י ל ד,yeled,(male) child,יֶ֫לֶד,child,
-tame,,ט מ א,tame,unclean,טָמֵא,,
+tame,🐖,ט מ א,tame,unclean,טָמֵא,unclean,
 etsah,,ע צ ה,etsah,counsel,עֵצָה,,
 sheqel,,ש ק ל,sheqel,shekel,שֶׁ֫קֶל,,img/sheqel.png
 delet,🚪,ד ל ת,delet,door,דֶּ֫לֶת,door,
@@ -227,10 +227,10 @@ shor,🐂,ש ו ר,shor,ox,שׁוֹר,ox,
 goral,🎲,ג ו ר ל,goral,lot,גּוֹרָל,lot,
 yeshuah,,י ש ו ע ה,yeshuah,salvation,יְשׁוּעָה,,
 mishmeret,,מ ש מ ר ת,mishmeret,"charge, guard (duty)",מִשְׁמֶ֫רֶת,,
-nega,,נ ג ע,nega,plague,נֶ֫גַע,,
+nega,,נ ג ע,nega,plague,נֶ֫גַע,,img/nega.png
 tesha,9️⃣,ת ש ע,tesha,nine,תֵּ֫שַׁע,nine,
 aven,,א ו ן,aven,"iniquity, trouble",אָ֫וֶן,,
-barzel,,ב ר ז ל,barzel,iron,בַּרְזֶל,,
+barzel,,ב ר ז ל,barzel,iron,בַּרְזֶל,,img/barzel.png
 miqneh,,מ ק נ ה,miqneh,livestock,מִקְנֶה,,
 qeshet,🏹,ק ש ת,qeshet,bow,קֶ֫שֶׁת,bow,
 terumah,,ת ר ו מ ה,terumah,contribution,תְּרוּמָה,,img/terumah.png
@@ -239,11 +239,11 @@ mizrah,,מ ז ר ח,mizrah,east,מִזְרָח,,img/mizrah.png
 selah,,ס ל ה,selah,selah,סֶ֫לָה,,
 ez,🐐,ע ז,ez,goat,עֵז,goat,
 erez,🌲,א ר ז,erez,cedar,אֶ֫רֶז,cedar,
-hevel,,ה ב ל,hevel,"vapor, vanity",הֶ֫בֶל,,
+hevel,,ה ב ל,hevel,"vapor, vanity",הֶ֫בֶל,,img/hevel.png
 cherpah,,ח ר פ ה,cherpah,"reproach, disgrace",חֶרְפָּה,,
 tsur,🪨,צ ו ר,tsur,rock,צוּר,rock,
 qir,,ק י ר,qir,(house) wall,קִיר,,
-shalal,,ש ל ל,shalal,spoil,שָׁלָל,,
+shalal,,ש ל ל,shalal,spoil,שָׁלָל,,img/shalal.png
 beten,🤰,ב ט ן,beten,belly,בֶּ֫טֶן,,
 shofar,🎺,ש ו פ ר,shofar,trumpet,שׁוֹפָר,trumpet,
 givah,,ג ב ע ה,givah,hill,גִּבְעָה,,img/givah.png
@@ -252,7 +252,7 @@ shulchan,,ש ל ח ן,shulchan,table,שֻׁלְחָן,,img/shulchan.png
 bor,,ב ו ר,bor,"pit, cistern",בּוֹר,,
 kesil,,כ ס י ל,kesil,fool,כְּסִיל,,
 tsar,,צ ר,tsar,enemy,צַר,,
-tsarah,,צ ר ה,tsarah,distress,צָרָה,,
+tsarah,😩,צ ר ה,tsarah,distress,צָרָה,distress,
 berakhah,🙏,ב ר כ ה,berakhah,blessing,בְּרָכָה,blessing,
 chen,,ח ן,chen,"favor, grace",חֵן,,
 ed,,ע ד,ed,witness,עֵד,,
@@ -267,14 +267,14 @@ cheleq,,ח ל ק,cheleq,portion,חֵ֫לֶק,,
 negev,🧭,נ ג ב,negev,south,נֶ֫גֶב,south,
 isheh,,א ש ה,isheh,fire offering,אִשֶּׁה,,
 halom,💭,ח ל ו ם,halom,dream,חֲלוֹם,dream,
-emeq,,ע מ ק,emeq,valley,עֵ֫מֶק,,
+emeq,,ע מ ק,emeq,valley,עֵ֫מֶק,,img/emeq.png
 sheol,,ש א ו ל,sheol,Sheol,שְׁאוֹל,,
 male,,מ ל א,male,full,מָלֵא,,img/male.png
 naarah,👧,נ ע ר ה,naarah,girl,נַעֲרָה,girl,
 shifchah,,ש פ ח ה,shifchah,female servant,שִׁפְחָה,,
 hag,🎉,ח ג,hag,feast,חַג,feast,
 qaneh,,ק נ ה,qaneh,reed,קָנֶה,,
-evyon,,א ב י ו ן,evyon,needy,אֶבְיוֹן,,
+evyon,,א ב י ו ן,evyon,needy,אֶבְיוֹן,,img/evyon.png
 acharit,,א ח ר י ת,acharit,"end, future",אַחֲרִית,,
 etsel,,א צ ל,etsel,beside,אֵ֫צֶל,,
 gevurah,,ג ב ו ר ה,gevurah,might,גְּבוּרָה,,
@@ -287,8 +287,8 @@ neder,,נ ד ר,neder,vow,נֵ֫דֶר,,
 nesekh,,נ ס ך,nesekh,drink offering,נֶ֫סֶךְ,,
 aravah,,ע ר ב ה,aravah,(desert) plain,עֲרָבָה,,
 eloha,,א ל ו ה,eloha,God,אֱלוֹהַּ,,
-orach,,א ר ח,orach,way,אֹ֫רַח,,
-sela,,ס ל ע,sela,rock,סֶ֫לַע,,
+orach,,א ר ח,orach,way,אֹ֫רַח,,img/orach.png
+sela,,ס ל ע,sela,rock,סֶ֫לַע,,img/sela.png
 reha,👃,ר י ח,reha,smell,רֵיחַ,smell,
 eden,,א ד ן,eden,base,אֶ֫דֶן,,
 mizmor,🎵,מ ז מ ו ר,mizmor,psalm,מִזְמוֹר,psalm,
@@ -344,7 +344,7 @@ chevel,,ח ב ל,chevel,cord,חֶ֫בֶל,,
 nevelah,,נ ב ל ה,nevelah,dead body,נְבֵלָה,,
 saq,,ש ק,saq,sackcloth,שַׂק,,
 aryeh,🦁,א ר י ה,aryeh,lion,אַרְיֵה,,
-chanit,,ח נ י ת,chanit,spear,חֲנִית,,
+chanit,,ח נ י ת,chanit,spear,חֲנִית,,img/chanit.png
 lishkah,,ל ש כ ה,lishkah,chamber,לִשְׁכָּה,,
 maalah,,מ ע ל ה,maalah,step,מַעֲלָה,,
 matnayim,,מ ת נ י ם,matnayim,loins,מָתְנַ֫יִם,,

@@ -13,6 +13,20 @@
     "hint": "document"
   },
   {
+    "id": "mitsvah",
+    "emoji": "",
+    "letters": [
+      "מ",
+      "צ",
+      "ו",
+      "ה"
+    ],
+    "translit": "mitsvah",
+    "gloss": "commandment",
+    "pointed": "מִצְוָה",
+    "image": "img/mitsvah.png"
+  },
+  {
     "id": "daat",
     "emoji": "",
     "letters": [
@@ -240,6 +254,19 @@
     "hint": "heart"
   },
   {
+    "id": "eved",
+    "emoji": "",
+    "letters": [
+      "ע",
+      "ב",
+      "ד"
+    ],
+    "translit": "eved",
+    "gloss": "male servant",
+    "pointed": "עֶ֫בֶד",
+    "image": "img/eved.png"
+  },
+  {
     "id": "ishah",
     "emoji": "👩",
     "letters": [
@@ -265,6 +292,19 @@
     "gloss": "two",
     "pointed": "שְׁנַ֫יִם",
     "hint": "two"
+  },
+  {
+    "id": "kohen",
+    "emoji": "",
+    "letters": [
+      "כ",
+      "ה",
+      "ן"
+    ],
+    "translit": "kohen",
+    "gloss": "priest",
+    "pointed": "כֹּהֵן",
+    "image": "img/kohen.png"
   },
   {
     "id": "derekh",
@@ -305,6 +345,19 @@
     "gloss": "three",
     "pointed": "שָׁלֹשׁ",
     "hint": "three"
+  },
+  {
+    "id": "rosh",
+    "emoji": "",
+    "letters": [
+      "ר",
+      "א",
+      "ש"
+    ],
+    "translit": "rosh",
+    "gloss": "head",
+    "pointed": "רֹאשׁ",
+    "image": "img/rosh.svg"
   },
   {
     "id": "bat",
@@ -396,7 +449,7 @@
     "hint": "ten"
   },
   {
-    "id": "hamesh",
+    "id": "chamesh",
     "emoji": "5️⃣",
     "letters": [
       "ח",
@@ -422,6 +475,19 @@
     "hint": "sound"
   },
   {
+    "id": "tachat",
+    "emoji": "",
+    "letters": [
+      "ת",
+      "ח",
+      "ת"
+    ],
+    "translit": "tachat",
+    "gloss": "under, instead of",
+    "pointed": "תַּ֫חַת",
+    "image": "img/tachat.png"
+  },
+  {
     "id": "peh",
     "emoji": "👄",
     "letters": [
@@ -432,6 +498,19 @@
     "gloss": "mouth",
     "pointed": "פֶּה",
     "hint": "mouth"
+  },
+  {
+    "id": "elef",
+    "emoji": "",
+    "letters": [
+      "א",
+      "ל",
+      "ף"
+    ],
+    "translit": "elef",
+    "gloss": "thousand",
+    "pointed": "אֶ֫לֶף",
+    "image": "img/elef.png"
   },
   {
     "id": "sheva",
@@ -445,6 +524,19 @@
     "gloss": "seven",
     "pointed": "שֶׁ֫בַע",
     "hint": "seven"
+  },
+  {
+    "id": "tsava",
+    "emoji": "",
+    "letters": [
+      "צ",
+      "ב",
+      "א"
+    ],
+    "translit": "tsava",
+    "gloss": "host",
+    "pointed": "צָבָא",
+    "image": "img/tsava.svg"
   },
   {
     "id": "arba",
@@ -475,7 +567,7 @@
     "hint": "heaven"
   },
   {
-    "id": "herev",
+    "id": "cherev",
     "emoji": "🗡️",
     "letters": [
       "ח",
@@ -498,6 +590,20 @@
     "gloss": "silver, money",
     "pointed": "כֶּ֫סֶף",
     "hint": "money"
+  },
+  {
+    "id": "mizbecha",
+    "emoji": "",
+    "letters": [
+      "מ",
+      "ז",
+      "ב",
+      "ח"
+    ],
+    "translit": "mizbecha",
+    "gloss": "altar",
+    "pointed": "מִזְבֵּחַ",
+    "image": "img/mizbecha.png"
   },
   {
     "id": "maqom",
@@ -539,7 +645,7 @@
     "hint": "gold"
   },
   {
-    "id": "ruha",
+    "id": "ruach",
     "emoji": "💨",
     "letters": [
       "ר",
@@ -638,7 +744,7 @@
     "hint": "field"
   },
   {
-    "id": "milhamah",
+    "id": "milchamah",
     "emoji": "⚔️",
     "letters": [
       "מ",
@@ -653,7 +759,7 @@
     "hint": "war"
   },
   {
-    "id": "mishpahah",
+    "id": "mishpachah",
     "emoji": "👪",
     "letters": [
       "מ",
@@ -692,7 +798,7 @@
     "hint": "time"
   },
   {
-    "id": "hodesh",
+    "id": "chodesh",
     "emoji": "🌙",
     "letters": [
       "ח",
@@ -781,6 +887,19 @@
     "pointed": "מִדְבָּר"
   },
   {
+    "id": "mateh",
+    "emoji": "",
+    "letters": [
+      "מ",
+      "ט",
+      "ה"
+    ],
+    "translit": "mateh",
+    "gloss": "staff, tribe",
+    "pointed": "מַטֶּה",
+    "image": "img/mateh.png"
+  },
+  {
     "id": "amah-cubit",
     "emoji": "📏",
     "letters": [
@@ -804,6 +923,20 @@
     "translit": "regel",
     "gloss": "foot",
     "pointed": "רֶ֫גֶל"
+  },
+  {
+    "id": "gevul",
+    "emoji": "",
+    "letters": [
+      "ג",
+      "ב",
+      "ו",
+      "ל"
+    ],
+    "translit": "gevul",
+    "gloss": "border, territory",
+    "pointed": "גְּבוּל",
+    "image": "img/gevul.png"
   },
   {
     "id": "naar",
@@ -871,7 +1004,7 @@
     "hint": "garment"
   },
   {
-    "id": "mahaneh",
+    "id": "machaneh",
     "emoji": "🏕️",
     "letters": [
       "מ",
@@ -911,7 +1044,7 @@
     "hint": "angel"
   },
   {
-    "id": "minhah",
+    "id": "minchah",
     "emoji": "🎁",
     "letters": [
       "מ",
@@ -923,6 +1056,20 @@
     "gloss": "gift",
     "pointed": "מִנְחָה",
     "hint": "gift"
+  },
+  {
+    "id": "aron",
+    "emoji": "",
+    "letters": [
+      "א",
+      "ר",
+      "ו",
+      "ן"
+    ],
+    "translit": "aron",
+    "gloss": "ark",
+    "pointed": "אֲרוֹן",
+    "image": "img/aron.png"
   },
   {
     "id": "kaf",
@@ -1028,6 +1175,20 @@
     "pointed": "אַ֫יִל"
   },
   {
+    "id": "gibor",
+    "emoji": "",
+    "letters": [
+      "ג",
+      "ב",
+      "ו",
+      "ר"
+    ],
+    "translit": "gibor",
+    "gloss": "mighty",
+    "pointed": "גִּבּוֹר",
+    "image": "img/gibor.png"
+  },
+  {
     "id": "sheni",
     "emoji": "🥈",
     "letters": [
@@ -1121,7 +1282,7 @@
     "hint": "right"
   },
   {
-    "id": "nehoshet",
+    "id": "nechoshet",
     "emoji": "🥉",
     "letters": [
       "נ",
@@ -1187,7 +1348,7 @@
     "hint": "evening"
   },
   {
-    "id": "homah",
+    "id": "chomah",
     "emoji": "🧱",
     "letters": [
       "ח",
@@ -1227,7 +1388,19 @@
     "hint": "prince"
   },
   {
-    "id": "hatsi",
+    "id": "chemah",
+    "emoji": "😡",
+    "letters": [
+      "ח",
+      "מ",
+      "ה"
+    ],
+    "translit": "chemah",
+    "gloss": "heat, wrath",
+    "pointed": "חֵמָה"
+  },
+  {
+    "id": "chatsi",
     "emoji": "🌓",
     "letters": [
       "ח",
@@ -1239,7 +1412,7 @@
     "pointed": "חֲצִי"
   },
   {
-    "id": "koha",
+    "id": "kocha",
     "emoji": "💪",
     "letters": [
       "כ",
@@ -1274,6 +1447,19 @@
     "gloss": "light",
     "pointed": "אוֹר",
     "hint": "light"
+  },
+  {
+    "id": "yashar",
+    "emoji": "",
+    "letters": [
+      "י",
+      "ש",
+      "ר"
+    ],
+    "translit": "yashar",
+    "gloss": "straight, right",
+    "pointed": "יָשָׁר",
+    "image": "img/yashar.png"
   },
   {
     "id": "nahar",
@@ -1328,6 +1514,34 @@
     "gloss": "kingdom",
     "pointed": "מַמְלָכָה",
     "hint": "kingdom"
+  },
+  {
+    "id": "achot",
+    "emoji": "",
+    "letters": [
+      "א",
+      "ח",
+      "ו",
+      "ת"
+    ],
+    "translit": "achot",
+    "gloss": "sister",
+    "pointed": "אָחוֹת",
+    "image": "img/achot.png"
+  },
+  {
+    "id": "migrash",
+    "emoji": "",
+    "letters": [
+      "מ",
+      "ג",
+      "ר",
+      "ש"
+    ],
+    "translit": "migrash",
+    "gloss": "pastureland",
+    "pointed": "מִגְרָשׁ",
+    "image": "img/migrash.png"
   },
   {
     "id": "sheqer",
@@ -1410,7 +1624,62 @@
     "hint": "third"
   },
   {
-    "id": "hayah",
+    "id": "mareh",
+    "emoji": "",
+    "letters": [
+      "מ",
+      "ר",
+      "א",
+      "ה"
+    ],
+    "translit": "mareh",
+    "gloss": "appearance",
+    "pointed": "מַרְאֶה",
+    "image": "img/mareh.png"
+  },
+  {
+    "id": "raav",
+    "emoji": "",
+    "letters": [
+      "ר",
+      "ע",
+      "ב"
+    ],
+    "translit": "raav",
+    "gloss": "famine",
+    "pointed": "רָעָב",
+    "image": "img/raav.png"
+  },
+  {
+    "id": "or-skin",
+    "emoji": "",
+    "letters": [
+      "ע",
+      "ו",
+      "ר"
+    ],
+    "translit": "or",
+    "gloss": "skin",
+    "pointed": "עוֹר",
+    "image": "img/or.png"
+  },
+  {
+    "id": "shevii",
+    "emoji": "",
+    "letters": [
+      "ש",
+      "ב",
+      "י",
+      "ע",
+      "י"
+    ],
+    "translit": "shevii",
+    "gloss": "seventh",
+    "pointed": "שְׁבִיעִי",
+    "image": "img/shevii.png"
+  },
+  {
+    "id": "chayah",
     "emoji": "🐾",
     "letters": [
       "ח",
@@ -1423,7 +1692,7 @@
     "hint": "animal"
   },
   {
-    "id": "hamor",
+    "id": "chamor",
     "emoji": "🫏",
     "letters": [
       "ח",
@@ -1450,7 +1719,7 @@
     "hint": "clean"
   },
   {
-    "id": "simhah",
+    "id": "simchah",
     "emoji": "😊",
     "letters": [
       "ש",
@@ -1502,6 +1771,32 @@
     "gloss": "(male) child",
     "pointed": "יֶ֫לֶד",
     "hint": "child"
+  },
+  {
+    "id": "tame",
+    "emoji": "🐖",
+    "letters": [
+      "ט",
+      "מ",
+      "א"
+    ],
+    "translit": "tame",
+    "gloss": "unclean",
+    "pointed": "טָמֵא",
+    "hint": "unclean"
+  },
+  {
+    "id": "sheqel",
+    "emoji": "",
+    "letters": [
+      "ש",
+      "ק",
+      "ל"
+    ],
+    "translit": "sheqel",
+    "gloss": "shekel",
+    "pointed": "שֶׁ֫קֶל",
+    "image": "img/sheqel.png"
   },
   {
     "id": "delet",
@@ -1556,7 +1851,7 @@
     "pointed": "הֵיכָל"
   },
   {
-    "id": "hoshekh",
+    "id": "choshekh",
     "emoji": "🌑",
     "letters": [
       "ח",
@@ -1581,6 +1876,19 @@
     "gloss": "treasure",
     "pointed": "אוֹצָר",
     "hint": "treasure"
+  },
+  {
+    "id": "ot",
+    "emoji": "",
+    "letters": [
+      "א",
+      "ו",
+      "ת"
+    ],
+    "translit": "ot",
+    "gloss": "sign",
+    "pointed": "אוֹת",
+    "image": "img/ot.png"
   },
   {
     "id": "shor",
@@ -1610,6 +1918,19 @@
     "hint": "lot"
   },
   {
+    "id": "nega",
+    "emoji": "",
+    "letters": [
+      "נ",
+      "ג",
+      "ע"
+    ],
+    "translit": "nega",
+    "gloss": "plague",
+    "pointed": "נֶ֫גַע",
+    "image": "img/nega.png"
+  },
+  {
     "id": "tesha",
     "emoji": "9️⃣",
     "letters": [
@@ -1621,6 +1942,20 @@
     "gloss": "nine",
     "pointed": "תֵּ֫שַׁע",
     "hint": "nine"
+  },
+  {
+    "id": "barzel",
+    "emoji": "",
+    "letters": [
+      "ב",
+      "ר",
+      "ז",
+      "ל"
+    ],
+    "translit": "barzel",
+    "gloss": "iron",
+    "pointed": "בַּרְזֶל",
+    "image": "img/barzel.png"
   },
   {
     "id": "qeshet",
@@ -1636,6 +1971,48 @@
     "hint": "bow"
   },
   {
+    "id": "terumah",
+    "emoji": "",
+    "letters": [
+      "ת",
+      "ר",
+      "ו",
+      "מ",
+      "ה"
+    ],
+    "translit": "terumah",
+    "gloss": "contribution",
+    "pointed": "תְּרוּמָה",
+    "image": "img/terumah.png"
+  },
+  {
+    "id": "qeren",
+    "emoji": "",
+    "letters": [
+      "ק",
+      "ר",
+      "ן"
+    ],
+    "translit": "qeren",
+    "gloss": "horn",
+    "pointed": "קֶ֫רֶן",
+    "image": "img/qeren.png"
+  },
+  {
+    "id": "mizrah",
+    "emoji": "",
+    "letters": [
+      "מ",
+      "ז",
+      "ר",
+      "ח"
+    ],
+    "translit": "mizrah",
+    "gloss": "east",
+    "pointed": "מִזְרָח",
+    "image": "img/mizrah.png"
+  },
+  {
     "id": "ez",
     "emoji": "🐐",
     "letters": [
@@ -1644,7 +2021,8 @@
     ],
     "translit": "ez",
     "gloss": "goat",
-    "pointed": "עֵז"
+    "pointed": "עֵז",
+    "hint": "goat"
   },
   {
     "id": "erez",
@@ -1660,6 +2038,19 @@
     "hint": "cedar"
   },
   {
+    "id": "hevel",
+    "emoji": "",
+    "letters": [
+      "ה",
+      "ב",
+      "ל"
+    ],
+    "translit": "hevel",
+    "gloss": "vapor, vanity",
+    "pointed": "הֶ֫בֶל",
+    "image": "img/hevel.png"
+  },
+  {
     "id": "tsur",
     "emoji": "🪨",
     "letters": [
@@ -1671,6 +2062,19 @@
     "gloss": "rock",
     "pointed": "צוּר",
     "hint": "rock"
+  },
+  {
+    "id": "shalal",
+    "emoji": "",
+    "letters": [
+      "ש",
+      "ל",
+      "ל"
+    ],
+    "translit": "shalal",
+    "gloss": "spoil",
+    "pointed": "שָׁלָל",
+    "image": "img/shalal.png"
   },
   {
     "id": "beten",
@@ -1699,6 +2103,20 @@
     "hint": "trumpet"
   },
   {
+    "id": "givah",
+    "emoji": "",
+    "letters": [
+      "ג",
+      "ב",
+      "ע",
+      "ה"
+    ],
+    "translit": "givah",
+    "gloss": "hill",
+    "pointed": "גִּבְעָה",
+    "image": "img/givah.png"
+  },
+  {
     "id": "of",
     "emoji": "🐦",
     "letters": [
@@ -1710,6 +2128,33 @@
     "gloss": "bird(s)",
     "pointed": "עוֹף",
     "hint": "bird"
+  },
+  {
+    "id": "shulchan",
+    "emoji": "",
+    "letters": [
+      "ש",
+      "ל",
+      "ח",
+      "ן"
+    ],
+    "translit": "shulchan",
+    "gloss": "table",
+    "pointed": "שֻׁלְחָן",
+    "image": "img/shulchan.png"
+  },
+  {
+    "id": "tsarah",
+    "emoji": "😩",
+    "letters": [
+      "צ",
+      "ר",
+      "ה"
+    ],
+    "translit": "tsarah",
+    "gloss": "distress",
+    "pointed": "צָרָה",
+    "hint": "distress"
   },
   {
     "id": "berakhah",
@@ -1778,6 +2223,32 @@
     "hint": "dream"
   },
   {
+    "id": "emeq",
+    "emoji": "",
+    "letters": [
+      "ע",
+      "מ",
+      "ק"
+    ],
+    "translit": "emeq",
+    "gloss": "valley",
+    "pointed": "עֵ֫מֶק",
+    "image": "img/emeq.png"
+  },
+  {
+    "id": "male",
+    "emoji": "",
+    "letters": [
+      "מ",
+      "ל",
+      "א"
+    ],
+    "translit": "male",
+    "gloss": "full",
+    "pointed": "מָלֵא",
+    "image": "img/male.png"
+  },
+  {
     "id": "naarah",
     "emoji": "👧",
     "letters": [
@@ -1804,6 +2275,21 @@
     "hint": "feast"
   },
   {
+    "id": "evyon",
+    "emoji": "",
+    "letters": [
+      "א",
+      "ב",
+      "י",
+      "ו",
+      "ן"
+    ],
+    "translit": "evyon",
+    "gloss": "needy",
+    "pointed": "אֶבְיוֹן",
+    "image": "img/evyon.png"
+  },
+  {
     "id": "magen",
     "emoji": "🛡️",
     "letters": [
@@ -1814,6 +2300,32 @@
     "translit": "magen",
     "gloss": "shield",
     "pointed": "מָגֵן"
+  },
+  {
+    "id": "orach",
+    "emoji": "",
+    "letters": [
+      "א",
+      "ר",
+      "ח"
+    ],
+    "translit": "orach",
+    "gloss": "way",
+    "pointed": "אֹ֫רַח",
+    "image": "img/orach.png"
+  },
+  {
+    "id": "sela",
+    "emoji": "",
+    "letters": [
+      "ס",
+      "ל",
+      "ע"
+    ],
+    "translit": "sela",
+    "gloss": "rock",
+    "pointed": "סֶ֫לַע",
+    "image": "img/sela.png"
   },
   {
     "id": "reha",
@@ -1870,7 +2382,7 @@
     "hint": "forest"
   },
   {
-    "id": "mahashavah",
+    "id": "machashavah",
     "emoji": "💭",
     "letters": [
       "מ",
@@ -1985,6 +2497,32 @@
     "hint": "arrow"
   },
   {
+    "id": "matsah",
+    "emoji": "",
+    "letters": [
+      "מ",
+      "צ",
+      "ה"
+    ],
+    "translit": "matsah",
+    "gloss": "unleavened bread",
+    "pointed": "מַצָּה",
+    "image": "img/matsah.png"
+  },
+  {
+    "id": "solet",
+    "emoji": "",
+    "letters": [
+      "ס",
+      "ל",
+      "ת"
+    ],
+    "translit": "solet",
+    "gloss": "fine flour",
+    "pointed": "סֹ֫לֶת",
+    "image": "img/solet.png"
+  },
+  {
     "id": "sair",
     "emoji": "🐐",
     "letters": [
@@ -2027,7 +2565,7 @@
     "hint": "weight"
   },
   {
-    "id": "pahad",
+    "id": "pachad",
     "emoji": "😨",
     "letters": [
       "פ",
@@ -2038,6 +2576,19 @@
     "gloss": "dread",
     "pointed": "פַּ֫חַד",
     "hint": "dread"
+  },
+  {
+    "id": "pesach",
+    "emoji": "",
+    "letters": [
+      "פ",
+      "ס",
+      "ח"
+    ],
+    "translit": "pesach",
+    "gloss": "Passover",
+    "pointed": "פֶּ֫סַח",
+    "image": "img/pesach.png"
   },
   {
     "id": "qatsir",
@@ -2092,6 +2643,20 @@
     "translit": "aryeh",
     "gloss": "lion",
     "pointed": "אַרְיֵה"
+  },
+  {
+    "id": "chanit",
+    "emoji": "",
+    "letters": [
+      "ח",
+      "נ",
+      "י",
+      "ת"
+    ],
+    "translit": "chanit",
+    "gloss": "spear",
+    "pointed": "חֲנִית",
+    "image": "img/chanit.png"
   },
   {
     "id": "seh",
